@@ -94,6 +94,8 @@ class BaseInteraction:
             self.channel = None
 
         self._sent: bool = False
+        self._deferred: bool = False
+        self._deferred_eph: bool = False
 
     @property
     def created_at(self):
@@ -211,6 +213,7 @@ class BaseInteraction:
             if self.bot.slash._modify_send:
                 send_kwargs["components"] = components
             return await self.channel.send(**send_kwargs)  # type: ignore
+        ephemeral = ephemeral or self._deferred_eph
         # Create response
         await self.create_response(
             content=content,
@@ -239,6 +242,16 @@ class BaseInteraction:
                 return await self.fetch_initial_response()
             except Exception:
                 pass
+
+    async def defer(self, ephemeral: bool = False):
+        if self._deferred:
+            return
+
+        if ephemeral:
+            self._deferred_eph = True
+
+        await self.reply(type=5, ephemeral=ephemeral)
+        self._deferred = True
 
     async def create_response(
         self,
