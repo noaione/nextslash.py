@@ -2,7 +2,10 @@ import asyncio
 from datetime import datetime, timedelta
 from typing import Any, Awaitable, Callable, Dict, List, Tuple
 
-import discord
+try:
+    import nextcord as discord
+except ImportError:
+    import discord
 
 from ..interactions import MessageInteraction
 

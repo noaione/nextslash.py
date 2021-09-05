@@ -1,4 +1,8 @@
-import discord
+try:
+    import nextcord as discord
+except ImportError:
+    import discord
+
 from .message_components import *
 from .interaction import *
 

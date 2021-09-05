@@ -3,7 +3,10 @@ from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Any, Callable, Dict, List, Union
 
-import discord
+try:
+    import nextcord as discord
+except ImportError:
+    import discord
 
 from .app_command_interaction import SlashInteraction
 

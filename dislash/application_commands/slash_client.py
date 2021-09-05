@@ -1,10 +1,16 @@
 import asyncio
 from typing import Any, Awaitable, Callable, Dict, List, Optional, Tuple
 
-import discord
-from discord import Guild
-from discord.ext import commands
-from discord.http import Route
+try:
+    import nextcord as discord
+    from nextcord import Guild
+    from nextcord.ext import commands
+    from nextcord.http import Route
+except ImportError:
+    import discord
+    from discord import Guild
+    from discord.ext import commands
+    from discord.http import Route
 
 from ..interactions import (
     ApplicationCommand,

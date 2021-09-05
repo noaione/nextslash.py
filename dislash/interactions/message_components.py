@@ -3,8 +3,12 @@ from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-import discord
-from discord import PartialEmoji
+try:
+    import nextcord as discord
+    from nextcord import PartialEmoji
+except ImportError:
+    import discord
+    from discord import PartialEmoji
 
 __all__ = (
     "auto_rows",

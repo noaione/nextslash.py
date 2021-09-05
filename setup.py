@@ -10,9 +10,9 @@ with open('dislash/__init__.py', 'r') as f:
 
 
 setup(
-    name='dislash.py',
+    name='nextslash.py',
     version=version,
-    description='A python wrapper for message components and application commands.',
+    description='A python wrapper for message components and application commands (Fork of dislash.py).',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='MIT',

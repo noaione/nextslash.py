@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional, Union
 
-import discord
+try:
+    import nextcord as discord
+except ImportError:
+    import discord
 
 from .interaction import *
 

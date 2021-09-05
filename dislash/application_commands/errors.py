@@ -1,4 +1,7 @@
-from discord import DiscordException
+try:
+    from nextcord import DiscordException
+except ImportError:
+    from discord import DiscordException
 
 
 class ApplicationCommandError(DiscordException):

@@ -2,7 +2,10 @@
 # Also avoiding circular import
 # there's no saving this, just annotate everything as Any and leave it be
 from typing import Any, Dict
-from discord import Client
+try:
+    from nextcord import Client
+except ImportError:
+    from discord import Client
 
 
 class _HANDLER:

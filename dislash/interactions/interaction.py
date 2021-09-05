@@ -4,10 +4,16 @@ import json
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-import discord
-from discord import AllowedMentions, Client, ClientUser, Embed, File, Member
-from discord.http import Route
-from discord.webhook import WebhookMessage
+try:
+    import nextcord as discord
+    from nextcord import AllowedMentions, Client, ClientUser, Embed, File, Member
+    from nextcord.http import Route
+    from nextcord.webhook import WebhookMessage
+except ImportError:
+    import discord
+    from discord import AllowedMentions, Client, ClientUser, Embed, File, Member
+    from discord.http import Route
+    from discord.webhook import WebhookMessage
 
 from .message_components import ActionRow
 

@@ -1,15 +1,29 @@
-from discord import (
-    InvalidArgument,
-    AllowedMentions,
-    File,
-    GuildSticker, StickerItem,
-    Embed,
-    Message, MessageReference, PartialMessage, MessageFlags,
-    Attachment
-)
+try:
+    from nextcord import (
+        InvalidArgument,
+        AllowedMentions,
+        File,
+        GuildSticker, StickerItem,
+        Embed,
+        Message, MessageReference, PartialMessage, MessageFlags,
+        Attachment
+    )
 
-from discord.ui import View
-from discord.utils import MISSING
+    from nextcord.ui import View
+    from nextcord.utils import MISSING
+except ImportError:
+    from discord import (
+        InvalidArgument,
+        AllowedMentions,
+        File,
+        GuildSticker, StickerItem,
+        Embed,
+        Message, MessageReference, PartialMessage, MessageFlags,
+        Attachment
+    )
+
+    from discord.ui import View
+    from discord.utils import MISSING
 
 from typing import (
     Any,
