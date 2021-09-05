@@ -1119,7 +1119,7 @@ class InteractionClient:
         local_app_commands = self.get_guild_commands(guild_id)
         good_commands = []
         for cmd in app_commands:
-            if cmd.name in local_app_commands:
+            if cmd in local_app_commands:
                 good_commands.append(cmd)
         try:
             await self.overwrite_guild_commands(guild_id, good_commands)
