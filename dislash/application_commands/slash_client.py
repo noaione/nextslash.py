@@ -1284,7 +1284,7 @@ class InteractionClient:
             if guild_ids is None:
                 usable = is_global
             else:
-                usable = not is_global and inter.guild_id in guild_ids
+                usable = is_global or inter.guild_id in guild_ids
         if usable:
             try:
                 await app_command.invoke(inter)
