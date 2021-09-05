@@ -213,19 +213,28 @@ class BaseInteraction:
             if self.bot.slash._modify_send:
                 send_kwargs["components"] = components
             return await self.channel.send(**send_kwargs)  # type: ignore
-        ephemeral = ephemeral or self._deferred_eph
-        # Create response
-        await self.create_response(
-            content=content,
-            type=type,
-            embed=embed,
-            embeds=embeds,
-            components=components,
-            view=view,
-            ephemeral=ephemeral,
-            tts=tts,
-            allowed_mentions=allowed_mentions,
-        )
+        if self._deferred:
+            await self.edit(
+                content=content,
+                embed=embed,
+                embeds=embeds,
+                components=components,
+                allowed_mentions=allowed_mentions
+            )
+        else:
+            ephemeral = ephemeral or self._deferred_eph
+            # Create response
+            await self.create_response(
+                content=content,
+                type=type,
+                embed=embed,
+                embeds=embeds,
+                components=components,
+                view=view,
+                ephemeral=ephemeral,
+                tts=tts,
+                allowed_mentions=allowed_mentions,
+            )
         self._sent = True
 
         if view and not view.is_finished():
