@@ -243,16 +243,6 @@ class BaseInteraction:
             except Exception:
                 pass
 
-    async def defer(self, ephemeral: bool = False):
-        if self._deferred:
-            return
-
-        if ephemeral:
-            self._deferred_eph = True
-
-        await self.reply(type=5, ephemeral=ephemeral)
-        self._deferred = True
-
     async def create_response(
         self,
         content: Any = None,
@@ -362,6 +352,16 @@ class BaseInteraction:
             Route("POST", "/interactions/{interaction_id}/{token}/callback", interaction_id=self.id, token=self.token),
             json=payload,
         )
+
+    async def defer(self, ephemeral: bool = False):
+        if self._deferred:
+            return
+
+        if ephemeral:
+            self._deferred_eph = True
+
+        await self.create_response(type=5, ephemeral=ephemeral)
+        self._deferred = True
 
     async def edit(
         self,
